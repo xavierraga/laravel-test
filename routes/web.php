@@ -11,19 +11,10 @@
 |
 */
 
-use App\Property;
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home-test-view', function () {
-    $properties = Property::inRandomOrder()->limit(10)->get();
-    return view('vendor.rw-real-estate.home', [
-        'properties' => $properties
-    ]);
-});
+Route::get('/home-test-view', 'PropertyController@home');
 
-Route::get('/properties-test-view', function () {
-    return view('vendor.rw-real-estate.properties');
-});
+Route::get('/properties-test-view', 'PropertyController@properties');

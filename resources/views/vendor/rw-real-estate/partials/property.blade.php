@@ -1,5 +1,4 @@
 <div class="c-properties-grid__item">
-    <?php $property = $properties[$i-1]; ?>
     <h3 class="c-properties-grid-item__title">{!! $property->name !!}</h3>
     <p>{!! $property->description !!}</p>
     <ul class="c-properties-grid-item__list">
