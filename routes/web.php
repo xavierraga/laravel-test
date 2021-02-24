@@ -11,12 +11,14 @@
 |
 */
 
+use App\Property;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/home-test-view', function () {
-    $properties = \RefineriaWeb\RWRealEstate\Models\Property::inRandomOrder()->limit(10)->get();
+    $properties = Property::inRandomOrder()->limit(10)->get();
     return view('vendor.rw-real-estate.home', [
         'properties' => $properties
     ]);
