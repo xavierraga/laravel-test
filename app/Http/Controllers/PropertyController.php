@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Location;
 use Illuminate\Http\Request;
 use App\Property;
 
@@ -19,11 +20,14 @@ class PropertyController extends Controller
     // View properties-test-view
     public function properties()
     {
-        $properties = Property::with(['property_feature' => function ($q){
+        $properties = Property::with(['property_feature' => function ($q) {
             $q->orderBy('price', 'DESC');
         }])->limit(20)->get();
+        $locations = Location::orderBy('name')->get();
+
         return view('vendor.rw-real-estate.properties', [
-            'properties' => $properties
+            'properties' => $properties,
+            'locations' => $locations
         ]);
     }
 

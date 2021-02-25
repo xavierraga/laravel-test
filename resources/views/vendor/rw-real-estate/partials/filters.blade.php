@@ -1,10 +1,10 @@
 <section class="c-filters">
     <h2 class="c-filters__title">Filters:</h2>
     <label for="price_from">
-        Price from: <input type="number" name="price_from" id="price_from" />
+        Price from: <input type="number" name="price_from" id="price_from"/>
     </label>
     <label for="price_to">
-        Price To: <input type="number" name="price_to" id="price_to" />
+        Price To: <input type="number" name="price_to" id="price_to"/>
     </label>
     <br>
     <label for="rooms">
@@ -40,7 +40,9 @@
     <label for="location">
         Location:
         <select name="location" id="location">
-            <option value="">TODO</option>
+            @foreach($locations as $location)
+                <option value="{!! $location->id !!}">{!! $location->name !!}</option>
+            @endforeach
         </select>
     </label>
     <br>
@@ -78,6 +80,7 @@
             text-align: left;
             padding: 15px;
         }
+
         .c-filters__title {
             text-align: left;
         }
