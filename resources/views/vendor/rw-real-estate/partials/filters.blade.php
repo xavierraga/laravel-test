@@ -71,7 +71,7 @@
         <input type="text" name="reference" id="reference">
     </label>
     <br>
-    <input type="button" value="Filter">
+    <input type="button" id="filter" value="Filter">
 </section>
 
 @push('css')
@@ -89,6 +89,47 @@
 
 @push('js')
     <script>
+        $(document).ready(function () {
+            $('#filter').click(function () {
+                $.ajax({
+                    data: {
+                        price_from: $('#price_from').val(),
+                        price_to: $('#price_to').val(),
+                        rooms: $('#rooms').val(),
+                        bathrooms: $('#bathrooms').val(),
+                        property_type: $('#property_type').val(),
+                        location: $('#location').val(),
+                        garaje: $('#garaje').prop('checked'),
+                        garden: $('#garden').prop('checked'),
+                        private_pool: $('#private_pool').prop('checked'),
+                        community_pool: $('#community_pool').prop('checked'),
+                        reference: $('#reference').val(),
+                    },
+                    success: function(response){
+                        for(let i = 0; i < 20; i++) {
+                            var $view = $('#property-' + i);
+                            if (response[i]) {
+                                $view.show();
 
+                                const property = response[i];
+                                console.log(property);
+                                $view.find('h3').html(property.name);
+                                $view.find('p').html(property.description);
+
+                                $view.find('ul li:nth-child(1)').html('Price: ' + property.price + ' €');
+                                $view.find('ul li:nth-child(2)').html('Location: ' + property.location);
+                                $view.find('ul li:nth-child(3)').html('Rooms: ' + property.rooms);
+                                $view.find('ul li:nth-child(4)').html('Bathrooms: ' + property.bathrooms);
+                                $view.find('ul li:nth-child(5)').html('Built Area: ' + property.built_area + ' m2');
+                            }
+                            else {
+                                $view.hide();
+                            }
+                        }
+                    }
+                });
+            });
+
+        });
     </script>
 @endpush

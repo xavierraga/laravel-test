@@ -11,9 +11,9 @@
         <aside class="c-grid__right">
             <section class="c-properties-grid__wrapper">
                 <div class="c-properties-grid">
-                    @foreach($properties as $property)
+                    @for($i = 0; $i < 20; $i++)
                         @include('vendor.rw-real-estate.partials.property')
-                    @endforeach
+                    @endfor
                 </div>
             </section>
         </aside>
